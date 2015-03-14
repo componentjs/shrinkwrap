@@ -4,6 +4,10 @@ Lock down component dependency versions
 
 This tool can be used like the [npm shrinkwrap tool](https://docs.npmjs.com/cli/shrinkwrap).
 
+## Install
+
+`npm install component-shrinkwrapper`
+
 ## Usage CLI
 
 ### write shrinkwrap
