@@ -69,8 +69,7 @@ describe('shrinkwrap API', function() {
         });
       });
 
-      // need component-downloader 1.2.0 and component-remotes 1.2.0
-      it.skip('should save hash in for branches', function(done) {
+      it('should save hash in for branches', function(done) {
 
         // this is the latest commit hash
         var latestHash = '699bcd524a39442e4bec52710ae38dfc36992be9';
