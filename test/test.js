@@ -4,7 +4,7 @@ var co = require('co');
 var rimraf = require('rimraf');
 var join = require('path').join;
 var fs = require('fs');
-var shrinkwrapper = require('..');
+var shrinkwrap = require('..');
 var exec = require('child_process').exec;
 
 var componentsOut = join(process.cwd(), 'components');
@@ -31,7 +31,7 @@ describe('shrinkwrap API', function() {
             // setup, install component/type with 3 dependencies
             var dir = join(componentsOut, 'component', 'type', '1.0.0');
             // now do shrinkwrap
-            shrinkwrapper.save({
+            shrinkwrap.save({
                 in: componentsOut
             }, function(err, result) {
                 if (err) return done(err);
@@ -54,7 +54,7 @@ describe('shrinkwrap API', function() {
             // setup, install component/type with 3 dependencies
             var dir = join(componentsOut, 'component', 'type', '1.0.0');
             // now do shrinkwrap
-            shrinkwrapper.save({
+            shrinkwrap.save({
                 in: componentsOut
             }, function(err, result) {
                 if (err) return done(err);
@@ -82,7 +82,7 @@ describe('shrinkwrap API', function() {
             // setup, install component/type with 3 dependencies
             var dir = join(componentsOut, 'timaschew', 'model', 'test-shrinkwrap');
             // now do shrinkwrap
-           shrinkwrapper.save({
+           shrinkwrap.save({
                 in: componentsOut
             }, function(err, result) {
                 if (err) return done(err);
@@ -99,6 +99,11 @@ describe('shrinkwrap API', function() {
 
       });
 
+
+      it.skip('should warn if hash is undefined, unsported component version', function(done) {
+        
+      });
+
       it.skip('should fail if no hash is available for a branch', function(done) {
         
       });
@@ -110,7 +115,7 @@ describe('shrinkwrap API', function() {
 
   describe('should install from the shrinkwrap file', function() {
     it('should install correct dependencies and versions', function(done) {
-        var shrinkwrap = {
+        var shrinkwrapJson = {
             "component/each": {
                 "0.2.5": {
                   "version": "0.2.5"
@@ -123,8 +128,8 @@ describe('shrinkwrap API', function() {
               }
         };
         
-        shrinkwrapper.install({
-            in: shrinkwrap
+        shrinkwrap.install({
+            in: shrinkwrapJson
         }, function(err) {
             if (err) return done(err);
             var dirs = fs.readdirSync(join(componentsOut, 'component'));
@@ -135,7 +140,7 @@ describe('shrinkwrap API', function() {
           });
 
       it('should use the hash for branches', function(done) {
-        var shrinkwrap = {
+        var shrinkwrapJson = {
             "timaschew/model": {
                 "test-shrinkwrap": {
                   "version": "test-shrinkwrap",
@@ -144,8 +149,8 @@ describe('shrinkwrap API', function() {
               }
         };
         
-        shrinkwrapper.install({
-            in: shrinkwrap
+        shrinkwrap.install({
+            in: shrinkwrapJson
         }, function(err) {
             if (err) return done(err);
             var dir = join(componentsOut, 'timaschew', 'model', 'test-shrinkwrap');
@@ -157,9 +162,9 @@ describe('shrinkwrap API', function() {
 
 
       it('should use the hash in strict mode for valid semvers', function(done) {
-        // the version don't exist, but the shrinkwrapper should ignore it in strict mode
+        // the version don't exist, but the shrinkwrap should ignore it in strict mode
         // but it should still rename it to the version
-        var shrinkwrap = {
+        var shrinkwrapJson = {
             "timaschew/model": {
                 "999.999.999": {
                   "version": "999.999.999",
@@ -167,8 +172,8 @@ describe('shrinkwrap API', function() {
                 }
               }
         };
-        shrinkwrapper.install({
-            in: shrinkwrap,
+        shrinkwrap.install({
+            in: shrinkwrapJson,
             strict: true
         }, function(err) {
             if (err) return done(err);
@@ -180,7 +185,7 @@ describe('shrinkwrap API', function() {
       });
 
       it('should fail if the hash is not available for a branch', function(done) {
-        var shrinkwrap = {
+        var shrinkwrapJson = {
             "timaschew/model": {
                 "test-shrinkwrap": {
                   "version": "test-shrinkwrap"
@@ -188,8 +193,8 @@ describe('shrinkwrap API', function() {
               }
         };
         
-        shrinkwrapper.install({
-            in: shrinkwrap
+        shrinkwrap.install({
+            in: shrinkwrapJson
         }, function(err) {
             err.should.exist;
             firstError = err[0];
@@ -200,15 +205,15 @@ describe('shrinkwrap API', function() {
       });
 
       it('should fail if the hash is not available in strict mode', function(done) {
-        var shrinkwrap = {
+        var shrinkwrapJson = {
             "timaschew/model": {
                 "test-shrinkwrap": {
                   "version": "test-shrinkwrap"
                 }
               }
         };
-        shrinkwrapper.install({
-            in: shrinkwrap,
+        shrinkwrap.install({
+            in: shrinkwrapJson,
             strict: true
         }, function(err) {
             err.should.exist;

@@ -6,35 +6,35 @@ This tool can be used like the [npm shrinkwrap tool](https://docs.npmjs.com/cli/
 
 ## Install
 
-`npm install component-shrinkwrapper`
+`npm install component-shrinkwrap`
 
 ## Usage CLI
 
 ### write shrinkwrap
 
-    component-shrinkwrapper --save --in components --out compoennt-shrinkwrap.json`
+    component-shrinkwrap --save --in components --out compoennt-shrinkwrap.json`
 
 ### install from shrinkwrap
 
-    component-shrinkwrapper --install --in component-shrinkwrap.json --out components` 
+    component-shrinkwrap --install --in component-shrinkwrap.json --out components` 
 
 you can omit the --in and --out args in this case, because it's the default
 
 ### Usage API
 
 ```js
-var shrinkwrapper = require('component-shrinkwrapper');
-shrinkwrapper.save(options, cb);
-shrinkwrapper.install(options, cb);
+var shrinkwrap = require('component-shrinkwrap');
+shrinkwrap.save(options, cb);
+shrinkwrap.install(options, cb);
 ```
 
-#### shrinkwrapper.save(options, cb)
+#### shrinkwrap.save(options, cb)
 
 __options.out__: if this property is null, the result will not be written to a file
 
 __cb(err, result)__: result is only available if `options.out` is null
 
-#### shrinkwrapper.install(options, cb)
+#### shrinkwrap.install(options, cb)
 
 ## Example workflow
 

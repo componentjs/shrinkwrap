@@ -1,5 +1,5 @@
 {
-  "name": "component-shrinkwrapper",
+  "name": "component-shrinkwrap",
   "version": "1.0.0",
   "description": "shrinkwrapper for component 1.1.x",
   "repository": {
@@ -10,7 +10,7 @@
   "author": "",
   "license": "ISC",
   "bin": {
-    "component-shrinkwrapper": "./bin/component-shrinkwrapper"
+    "component-shrinkwrap": "./bin/component-shrinkwrap"
   },
   "dependencies": {
     "co": "^3.1.0",
