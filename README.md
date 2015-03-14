@@ -19,8 +19,18 @@ you can omit the --in and --out args in this case, because it's the default
 ### Usage API
 
 ```js
-var save = require('')
+var shrinkwrapper = require('component-shrinkwrapper');
+shrinkwrapper.save(options, cb);
+shrinkwrapper.install(options, cb);
 ```
+
+#### shrinkwrapper.save(options, cb)
+
+__options.out__: if this property is null, the result will not be written to a file
+
+__cb(err, result)__: result is only available if `options.out` is null
+
+#### shrinkwrapper.install(options, cb)
 
 ## Example workflow
 
