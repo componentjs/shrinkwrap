@@ -638,8 +638,13 @@ module.exports = function(program, cb) {
                 context$2$0.next = 11;
                 break;
             case 18:
-                cb();
-            case 19:
+                if (!cb) {
+                    context$2$0.next = 20;
+                    break;
+                }
+
+                return context$2$0.abrupt("return", cb());
+            case 20:
             case "end":
                 return context$2$0.stop();
             }
