@@ -625,6 +625,7 @@ module.exports = function(program, cb) {
                     consoler.log('save', 'dependency %s has multiple versions: %s', repoUrl, obj.versions);
                 }
             }
+            return cb();
         }
     });
 };
