@@ -1,23 +1,19 @@
 var resolve = require('component-resolver');
 
 var co = require('co');
-var assert = require('assert');;
 var rimraf = require('rimraf');
 var join = require('path').join;
 var fs = require('fs');
 var shrinkwrapper = require('..');
 var exec = require('child_process').exec;
 
-var options = {
-  install: true,
-};
-
 var componentsOut = join(process.cwd(), 'components');
 var deshrinked = join(process.cwd(), 'deshrinked');
 
-function fixture(name) {
-  return join(__dirname, 'fixtures', name);
-}
+var options = {
+  install: true,
+  out: componentsOut
+};
 
 describe('shrinkwrap API', function() {
   beforeEach(function (done) {
@@ -25,13 +21,13 @@ describe('shrinkwrap API', function() {
   });
     
     describe('save shrinkwrap form compoennts', function() {
-
       it('should save a component with its dependencies', function(done) {
         var tree = resolve({
           dependencies: {
             'component/each': '0.2.5'
           }
-        }, options, function(err, tree) {
+        }, options, function(err) {
+            if (err) return done(err);
             // setup, install component/type with 3 dependencies
             var dir = join(componentsOut, 'component', 'type', '1.0.0');
             // now do shrinkwrap
@@ -53,7 +49,8 @@ describe('shrinkwrap API', function() {
             'component/to-function': '2.0.3',
             'component/each': '0.2.5'
           }
-        }, options, function(err, tree) {
+        }, options, function(err) {
+            if (err) return done(err);
             // setup, install component/type with 3 dependencies
             var dir = join(componentsOut, 'component', 'type', '1.0.0');
             // now do shrinkwrap
@@ -72,6 +69,7 @@ describe('shrinkwrap API', function() {
         });
       });
 
+      // need component-downloader 1.2.0 and component-remotes 1.2.0
       it.skip('should save hash in for branches', function(done) {
 
         // this is the latest commit hash
@@ -80,7 +78,8 @@ describe('shrinkwrap API', function() {
           dependencies: {
             'timaschew/model': 'test-shrinkwrap'
           }
-        }, options, function(err, tree) {
+        }, options, function(err) {
+            if (err) return done(err);
             // setup, install component/type with 3 dependencies
             var dir = join(componentsOut, 'timaschew', 'model', 'test-shrinkwrap');
             // now do shrinkwrap
