@@ -1,0 +1,29 @@
+#!/usr/bin/env node
+
+var program = require('commander');
+var install = require('..').install;
+var save = require('..').save;
+
+program
+    .option('-w, --write', 'write shrinkwrap file')
+    .option('-i, --install', 'install from shrinkwrap file')
+    .option('-s, --strict', 'use always the hash, fail if no hash exist')
+    .option('--in <path>', 'input: directory for -w | file for -w')
+    .option('--out <path>', 'output: file for -i | directory for -i')
+    .parse(process.argv);
+
+if (program.write && program.install || (!program.write && !program.install)) {
+    console.log('choose either --write or --install');
+    process.exit(1);
+}
+
+if (program.write) {
+    if (!program.in) program.in = 'components';
+    if (!program.out) program.out = 'component-shrinkwrap.json';
+    save(program);
+}
+if (program.install) {
+    if (!program.in) program.in = 'component-shrinkwrap.json';
+    if (!program.out) program.out = 'components';
+    install(program);
+}
