@@ -31,7 +31,7 @@ describe('shrinkwrap API', function() {
             // setup, install component/type with 3 dependencies
             var dir = join(componentsOut, 'component', 'type', '1.0.0');
             // now do shrinkwrap
-            var result = shrinkwrapper.save({
+            shrinkwrapper.save({
                 in: componentsOut
             }, function(err, result) {
                 if (err) return done(err);
@@ -54,7 +54,7 @@ describe('shrinkwrap API', function() {
             // setup, install component/type with 3 dependencies
             var dir = join(componentsOut, 'component', 'type', '1.0.0');
             // now do shrinkwrap
-            var result = shrinkwrapper.save({
+            shrinkwrapper.save({
                 in: componentsOut
             }, function(err, result) {
                 if (err) return done(err);
@@ -83,7 +83,7 @@ describe('shrinkwrap API', function() {
             // setup, install component/type with 3 dependencies
             var dir = join(componentsOut, 'timaschew', 'model', 'test-shrinkwrap');
             // now do shrinkwrap
-            var result = shrinkwrapper.save({
+           shrinkwrapper.save({
                 in: componentsOut
             }, function(err, result) {
                 if (err) return done(err);
@@ -124,7 +124,7 @@ describe('shrinkwrap API', function() {
               }
         };
         
-        var result = shrinkwrapper.install({
+        shrinkwrapper.install({
             in: shrinkwrap
         }, function(err) {
             if (err) return done(err);
@@ -145,7 +145,7 @@ describe('shrinkwrap API', function() {
               }
         };
         
-        var result = shrinkwrapper.install({
+        shrinkwrapper.install({
             in: shrinkwrap
         }, function(err) {
             if (err) return done(err);
@@ -168,7 +168,7 @@ describe('shrinkwrap API', function() {
                 }
               }
         };
-        var result = shrinkwrapper.install({
+        shrinkwrapper.install({
             in: shrinkwrap,
             strict: true
         }, function(err) {
@@ -189,7 +189,7 @@ describe('shrinkwrap API', function() {
               }
         };
         
-        var result = shrinkwrapper.install({
+        shrinkwrapper.install({
             in: shrinkwrap
         }, function(err) {
             err.should.exist;
@@ -208,7 +208,7 @@ describe('shrinkwrap API', function() {
                 }
               }
         };
-        var result = shrinkwrapper.install({
+        shrinkwrapper.install({
             in: shrinkwrap,
             strict: true
         }, function(err) {
