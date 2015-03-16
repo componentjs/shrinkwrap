@@ -72,9 +72,9 @@ wich is either a semver or the branch.
 
 1. install your components via component CLI or component resolver
 2. locate the directory where all the remote components are installed, in this case: `components`
-3. run `component-shrinkwrap --save --in components --out compoennt-shrinkwrap.json`
+3. run `component-shrinkwrap --save --in components --out component-shrinkwrap.json`
 4. `component-shrinkwrap.json` file contains all your remote dependencies, even transitive and components with multiple versions
-5. run `component-shrikwrap --install --in component-shrinkwrap.json --out components-deshrinkwrapped` 
+5. run `component-shrinkwrap --install --in component-shrinkwrap.json --out components-unwrapped` 
 6. you get installed all the components from the shrinkwrap file
 
 ## Avoid a messy components directory
